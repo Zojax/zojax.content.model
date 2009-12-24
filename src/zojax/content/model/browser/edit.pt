@@ -1,0 +1,8 @@
+<div class="z-form z-form-standard"
+     tal:content="structure view/@@pagelet/form.view">
+</div>
+<br />
+
+<div class="even" style="padding: 1em"
+     tal:define="viewModel view/viewModel/render|nothing"
+     tal:condition="viewModel" tal:content="structure viewModel"></div>

@@ -1,0 +1,14 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser">
+
+  <zojax:layout
+     name="portal"
+     title="Test layout"
+     for="zope.app.component.interfaces.ISite"
+     template="layoutportal.pt" />
+
+  <browser:defaultSkin name="DefaultSkin" />
+
+</configure>

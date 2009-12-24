@@ -1,0 +1,55 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.content.model">
+
+  <browser:defaultView
+     name="view.html"
+     for="..interfaces.IViewModelSupport" />
+
+  <zojax:pagelet
+     name="view.html"
+     for="..interfaces.IViewModelSupport"
+     template="renderer.pt"
+     class=".renderer.ViewModelRenderer"
+     permission="zope.Public" />
+
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.IViewModelExtension"
+     template="edit.pt"
+     class=".edit.ViewModelExtension"
+     permission="zojax.ManageViewModels" />
+
+  <zojax:pagelet
+     type="content.model.edit"
+     for="..interfaces.IViewModel"
+     class=".edit.ViewModelEditForm"
+     permission="zojax.ManageViewModels" />
+
+  <!-- edit wizard -->
+  <zojax:pagelet
+     name="model"
+     type="form.subform"
+     for="zojax.content.type.interfaces.IContent
+	  zojax.content.forms.interfaces.IPresentationStep"
+     class=".editwizard.ContentModel"
+     permission="zojax.ManageViewModels"
+     weight="10" />
+
+  <zojax:pagelet
+     name="configuremodel.html"
+     for="zojax.content.forms.interfaces.IPresentationStep"
+     class=".editwizard.ContentModelEdit"
+     permission="zojax.ManageViewModels" />
+
+  <!-- term renderer -->
+  <zojax:pagelet
+     type="pagelet"
+     for="..interfaces.IViewModelExtension
+	  .editwizard.ContentModel *
+	  zojax.widget.radio.interfaces.ITermItem"
+     template="modelitem.pt" />
+
+</configure>
