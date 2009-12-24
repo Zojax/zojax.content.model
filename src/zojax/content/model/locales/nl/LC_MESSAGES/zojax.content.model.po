@@ -1,0 +1,68 @@
+# #############################################################################
+#
+# Copyright (c) 2009 Zope Foundation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+# #############################################################################
+msgid ""
+msgstr ""
+"Project-Id-Version: Development/Unknown\n"
+"POT-Creation-Date: Tue Nov  4 16:58:38 2008\n"
+"PO-Revision-Date: 2008-11-02 12:02+0100\n"
+"Last-Translator: F. Kooman <fkooman@tuxed.net>\n"
+"Language-Team: Zope 3 Developers <zope3-dev@zope.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: zope/app/locales/extract.py\n"
+
+#: src/zojax/content/model/browser/renderer.pt:2
+msgid "View model is not configured."
+msgstr "Weergavemodel is niet geconfigureerd."
+
+#: src/zojax/content/model/browser/renderer.pt:4
+msgid "Please configure content view model"
+msgstr "Configureer het weergavemodel alstublieft"
+
+#: src/zojax/content/model/browser/renderer.pt:5
+msgid "here"
+msgstr "hier"
+
+#: src/zojax/content/model/configure.zcml:11
+msgid "Allow manage view model extension."
+msgstr "Toestaan beheer van weergavemodeluitbreidingen."
+
+#: src/zojax/content/model/configure.zcml:23
+msgid "This extension allow change content view model."
+msgstr "Deze uitbreiding staat het toe het inhoudsweergavemodel te veranderen."
+
+#: src/zojax/content/model/configure.zcml:23
+msgid "View model"
+msgstr "Weergavemodel"
+
+#: src/zojax/content/model/interfaces.py:58
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+#: src/zojax/content/model/interfaces.py:59
+msgid "Is this extension enabled for this content."
+msgstr "Is deze uitbreiding ingeschakeld voor deze inhoud."
+
+#: src/zojax/content/model/interfaces.py:64
+msgid "View models"
+msgstr "Modellen weergeven"
+
+#: src/zojax/content/model/interfaces.py:65
+msgid "List of all available view models."
+msgstr "Lijst van alle beschikbare weergavemodellen."
+
+#: src/zojax/content/model/model.py:182
+msgid "Field is readonly"
+msgstr "Veld is alleen leesbaar"

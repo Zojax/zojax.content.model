@@ -1,0 +1,62 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:i18n="http://namespaces.zope.org/i18n"
+   xmlns:zcml="http://namespaces.zope.org/zcml"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.content.model">
+
+  <!-- permissions -->
+  <permission
+     id="zojax.ManageViewModels"
+     title="Allow manage view model extension." />
+
+  <zcml:configure zcml:condition="installed zojax.ownership">
+    <include package="zojax.ownership" />
+    <grant
+       role="content.Owner"
+       permission="zojax.ManageViewModels" />
+  </zcml:configure>
+
+  <!-- Dynamic View Extension -->
+  <zojax:extension
+     name="content.model"
+     title="View model"
+     description="This extension allow change content view model."
+     for="zojax.content.type.interfaces.IContent"
+     schema=".interfaces.IViewModelExtension"
+     class=".extension.ViewModelExtension"
+     layer="zope.interface.Interface"
+     permission="zojax.ManageViewModels" />
+
+  <!-- cache handlers -->
+  <subscriber handler=".extension.extensionModifiedHandler" />
+  <subscriber handler=".extension.viewmodelModifiedHandler" />
+
+  <!-- vocabulary -->
+  <utility
+     name="zojax.content.model-list"
+     provides="zope.schema.interfaces.IVocabularyFactory"
+     factory=".vocabulary.Models" />
+
+  <!-- browser views -->
+  <include package=".browser" />
+
+  <!-- pagelet types -->
+  <zojax:pageletType
+     name="content.model.edit"
+     interface=".interfaces.IModelEdit" />
+
+  <zojax:pageletType
+     name="content.model.renderer"
+     interface=".interfaces.IModelRenderer" />
+
+  <!-- translations -->
+  <i18n:registerTranslations directory="locales"/>
+
+  <!-- generations -->
+  <utility
+     name="zojax.content.model"
+     provides="zope.app.generations.interfaces.ISchemaManager"
+     component=".generations.schemaManager" />
+
+</configure>

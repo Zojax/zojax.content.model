@@ -1,0 +1,139 @@
+=====================
+View model extensions
+=====================
+
+  >>> from zope import interface
+  >>> from zope.proxy import removeAllProxies
+  >>> from zojax.content.model.interfaces import IViewModelSupport
+  >>> from zojax.content.model.interfaces import IViewModelExtension
+
+  >>> root = getRootFolder()
+  >>> content = removeAllProxies(root['content'])
+
+  >>> from zope.testbrowser.testing import Browser
+
+  >>> actor = Browser()
+  >>> actor.addHeader("Authorization", "Basic mgr:mgrpw")
+  >>> actor.handleErrors = False
+
+  >>> actor.open("http://localhost/content/")
+
+  >>> print actor.contents
+  <html>
+  ...
+  ...<h1 class="z-content-title">My Content</h1>...
+  ...
+  </html>
+
+
+Enable extension and Select view
+
+  >>> actor.open("http://localhost/content/++extensions++/")
+  >>> actor.getLink('View model').click()
+  >>> actor.getControl(name='form.widgets.view:list').value = ['mydynamicview']
+  >>> actor.getControl(name='form.buttons.save').click()
+
+  >>> actor.open("http://localhost/content/")
+  >>> print actor.contents
+  <html>
+  ...My Dynamic View: My Content...
+  </html>
+
+
+Edit `View Model` form
+
+  >>> actor.open("http://localhost/content/++extensions++/")
+  >>> actor.getLink('View model').click()
+  >>> actor.getControl(name='viewmodeledit.widgets.content').value = u'Test'
+  >>> actor.getControl(name='viewmodeledit.buttons.save').click()
+
+  >>> actor.open("http://localhost/content/")
+  >>> print actor.contents
+  <html>
+  ...My Dynamic View: Test...
+  </html>
+
+
+View model with custom renderer
+
+  >>> actor.open("http://localhost/content/++extensions++/")
+  >>> actor.getLink('View model').click()
+  >>> actor.getControl(name='form.widgets.view:list').value = ['mydynamicview2']
+  >>> actor.getControl(name='form.buttons.save').click()
+
+  >>> actor.open("http://localhost/content/")
+  >>> print actor.contents
+  My Dynamic View: My Content
+
+
+Disable extension
+
+  >>> actor.open("http://localhost/content/++extensions++/")
+  >>> actor.getLink('View model').click()
+  >>> actor.getControl(name='form.widgets.view:list').value = ['__default__']
+  >>> actor.getControl(name='form.buttons.save').click()
+
+  >>> actor.open("http://localhost/content/")
+  >>> print actor.contents
+  <html>
+  ...
+  ...<h1 class="z-content-title">My Content</h1>...
+  ...
+  </html>
+
+
+Edit wizard step
+================
+
+Enable extension and Select view
+
+  >>> actor.open("http://localhost/content/context.html")
+  >>> actor.getLink('Presentation').click()
+  >>> actor.getControl(name='content.model.widgets.view:list').value = ['mydynamicview']
+  >>> actor.getControl(name='content.model.buttons.save').click()
+
+  >>> actor.open("http://localhost/content/")
+  >>> print actor.contents
+  <html>
+  ...My Dynamic View: Test...
+  </html>
+
+
+Edit `View Model` form
+
+  >>> actor.open("http://localhost/content/context.html/presentation/")
+  >>> actor.getLink('Configure').click()
+  >>> actor.getControl('Content title').value = u'Test'
+  >>> actor.getControl(name='content.model.edit.buttons.save').click()
+
+  >>> actor.open("http://localhost/content/")
+  >>> print actor.contents
+  <html>
+  ...My Dynamic View: Test...
+  </html>
+
+
+View model with custom renderer
+
+  >>> actor.open("http://localhost/content/context.html/presentation/")
+  >>> actor.getControl(name='content.model.widgets.view:list').value = ['mydynamicview2']
+  >>> actor.getControl(name='content.model.buttons.save').click()
+
+  >>> actor.open("http://localhost/content/")
+  >>> print actor.contents
+  My Dynamic View: My Content
+
+
+Disable extension
+
+  >>> actor.open("http://localhost/content/context.html/presentation/")
+  >>> actor.getControl(name='content.model.widgets.view:list').value = ['__default__']
+  >>> actor.getControl(name='content.model.buttons.save').click()
+
+  >>> actor.open("http://localhost/content/")
+  >>> print actor.contents
+  <html>
+  ...
+  ...<h1 class="z-content-title">My Content</h1>...
+  ...
+  </html>

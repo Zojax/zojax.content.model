@@ -1,0 +1,47 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser">
+
+  <interface
+     name="DefaultSkin"
+     interface="zojax.content.model.tests.tests.IDefaultSkin"
+     type="zope.publisher.interfaces.browser.IBrowserSkinType" />
+
+  <!-- my content -->
+  <zojax:content
+     schema="zojax.content.model.tests.content.IMyContent"
+     name="test.mycontent"
+     title="MyContent"
+     class="zojax.content.model.tests.content.MyContent" />
+
+  <class class="zojax.content.model.tests.content.MyContent">
+    <implements interface="zojax.extensions.interfaces.IExtensible" />
+    <require
+       permission="zope.View"
+       interface="zojax.content.model.tests.content.IMyContent" />
+  </class>
+
+  <zojax:pagelet
+     name="index.html"
+     for="zojax.content.model.tests.content.IMyContent"
+     class="zojax.content.model.tests.content.MyContentView"
+     provides="zojax.content.type.interfaces.IContentView"
+     permission="zope.Public" />
+
+  <!-- my content container -->
+  <zojax:content
+     schema="zojax.content.model.tests.content.IMyContentContainer"
+     name="test.mycontentcontainer"
+     title="MyContentContainer"
+     class="zojax.content.model.tests.content.MyContentContainer" />
+
+  <class class="zojax.content.model.tests.content.MyContentContainer">
+    <implements interface="zojax.extensions.interfaces.IExtensible" />
+    <require
+       permission="zope.View"
+       interface="zope.app.container.interfaces.IReadContainer
+		  zojax.content.model.tests.content.IMyContentContainer" />
+  </class>
+
+</configure>

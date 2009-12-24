@@ -1,0 +1,6 @@
+<div i18n:domain="zojax.content.model">
+  <h1 i18n:translate="">View model is not configured.</h1>
+  
+  <tal:block i18n:translate="">Please configure content view model</tal:block>
+  <a href="extensions.html/content.model/" i18n:translate="">here</a>.
+</div>
