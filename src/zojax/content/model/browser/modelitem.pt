@@ -14,7 +14,7 @@
   <div class="z-listing-details">
     <span tal:content="item/title"></span>
     <tal:block condition="python:item.selected and item.value != '__default__'">
-      <a href="configuremodel.html">(Configure)</a>
+      <a href="configuremodel.html" i18n:translate="">(Configure)</a>
     </tal:block>
     <div tal:content="item/description"></div>
   </div>
